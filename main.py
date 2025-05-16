@@ -1,13 +1,15 @@
 from models.recipe import Recipe
 from utils.db_handler import DatabaseHandler
 
-# Create a new recipe
-r = Recipe("Avocado Salad", "VEGAN", ["Avocado", "Lemon", "Salt"], "Mix all and serve fresh", 10)
-
-# Insert the recipe into the database
 db = DatabaseHandler()
-db.insert_recipe(r.name, r.category, r.get_ingredient_list(), r.instructions, r.prep_time)
+recipes = db.get_all_recipes()
 
-# Print all recipes from the database
-for row in db.get_all_recipes():
-    print(row)
+for recipe in recipes:
+    print(f"Name: {recipe[1]}")
+    print(f"Category: {recipe[2]}")
+    print(f"Ingredients: {recipe[3]}")
+    print(f"Guidlines: {recipe[4]}")
+    print(f"Preparation Time: {recipe[5]} min")
+    print("-" * 30)
+
+
